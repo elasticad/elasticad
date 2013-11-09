@@ -46,6 +46,7 @@ gem 'slim-rails'
 # gem 'mongoid', '~> 3.1.0'
 gem 'mongoid', github: 'mongoid/mongoid', branch: :master
 # gem 'mongoid', path: '../../mongoid/mongoid'
+gem 'coveralls', :require => false
 
 group :production do
 end
