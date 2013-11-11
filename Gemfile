@@ -46,7 +46,9 @@ gem 'slim-rails'
 # gem 'mongoid', '~> 3.1.0'
 gem 'mongoid', github: 'mongoid/mongoid', branch: :master
 # gem 'mongoid', path: '../../mongoid/mongoid'
-gem 'coveralls', :require => false
+gem 'coveralls', require: false
+gem 'validates_formatting_of'
+# gem 'moped'
 
 group :production do
 end
@@ -55,18 +57,20 @@ group :development do
 end
 
 group :test do
-  gem 'shoulda'
+  # gem 'shoulda-matchers'
   # gem 'mocha'
   gem 'rspec-rails'
-  gem 'guard-rspec'
-  gem 'guard-cucumber'
-  gem 'guard-spork'
-  # gem 'spork-rails', '~> 4.0.0'
+  gem 'mongoid-rspec'
+  gem 'guard-rspec', require: false
+  gem 'guard-cucumber', require: false
+  # gem 'guard-spork', path: '../guard-spork'
+  gem 'spork-rails', '~> 4.0'
   gem 'capybara'
   # gem 'fabrication'
   gem 'factory_girl_rails'
-  gem 'cucumber-rails', :require => false
+  gem 'cucumber-rails', require: false
   gem 'database_cleaner'
+  gem 'rb-inotify', '~> 0.9'
 end
 
 group :development, :test do
