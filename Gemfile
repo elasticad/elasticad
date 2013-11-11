@@ -44,9 +44,14 @@ end
 
 gem 'slim-rails'
 # gem 'mongoid', '~> 3.1.0'
-gem 'mongoid', github: 'mongoid/mongoid', branch: :master
-# gem 'mongoid', path: '../../mongoid/mongoid'
-gem 'coveralls', require: false
+
+if ENV['LOCAL_GIT_REPO']
+  gem 'mongoid', path: '../../mongoid/mongoid'
+else
+  gem 'mongoid', github: 'mongoid/mongoid', branch: :master
+end
+
+
 gem 'validates_formatting_of'
 # gem 'moped'
 
@@ -54,6 +59,17 @@ group :production do
 end
 
 group :development do
+  # Code metrics
+
+  gem 'coveralls', require: false
+  # A static analysis security vulnerability scanner for Ruby on Rails applications
+  # gem 'brakeman', :require => false
+  # gem 'simplecov'
+  # Code quality threshold checking as part of your build
+  # gem 'cane'
+  # A robust Ruby code analyzer, based on the community Ruby style guide
+  gem 'rubocop', require: false
+  gem 'guard-rubocop'
 end
 
 group :test do
@@ -63,7 +79,7 @@ group :test do
   gem 'mongoid-rspec'
   gem 'guard-rspec', require: false
   gem 'guard-cucumber', require: false
-  # gem 'guard-spork', path: '../guard-spork'
+  gem 'guard-spork', path: '../guard-spork' if ENV['LOCAL_GIT_REPO']
   gem 'spork-rails', '~> 4.0'
   gem 'capybara'
   # gem 'fabrication'
