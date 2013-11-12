@@ -47,12 +47,14 @@ gem 'slim-rails'
 
 if ENV['LOCAL_GIT_REPO']
   gem 'mongoid', path: '../../mongoid/mongoid'
+  gem 'validates_formatting_of', path: '/development/ruby/libs/validates_formatting_of'
 else
   gem 'mongoid', github: 'mongoid/mongoid', branch: :master
+  gem 'validates_formatting_of', github: 'hbakhtiyor/validates_formatting_of', branch: 'auto-include-in-mongoid'
 end
 
+gem 'coveralls', require: false
 
-gem 'validates_formatting_of'
 # gem 'moped'
 
 group :production do
@@ -61,7 +63,6 @@ end
 group :development do
   # Code metrics
 
-  gem 'coveralls', require: false
   # A static analysis security vulnerability scanner for Ruby on Rails applications
   # gem 'brakeman', :require => false
   # gem 'simplecov'
@@ -90,7 +91,8 @@ group :test do
 end
 
 group :development, :test do
+  # bug: already activated coderay 1.1.0
   # gem 'ruby-debug'
-  gem 'pry-rails'
-  gem 'pry-nav'
+  # gem 'pry-rails'
+  # gem 'pry-nav'
 end
