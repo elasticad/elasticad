@@ -35,13 +35,13 @@ guard :rspec , cmd: 'rspec --drb --tty --format documentation --colour' do
   # watch(%r{^spec/acceptance/steps/(.+)_steps\.rb$})   { |m| Dir[File.join("**/#{m[1]}.feature")][0] || 'spec/acceptance' }
 end
 
-# guard 'cucumber' do
-#   watch(%r{^features/.+\.feature$})
-#   watch(%r{^features/support/.+$})          { 'features' }
-#   watch(%r{^features/step_definitions/(.+)_steps\.rb$}) { |m| Dir[File.join("**/#{m[1]}.feature")][0] || 'features' }
-# end
+guard 'cucumber' do
+  watch(%r{^features/.+\.feature$})
+  watch(%r{^features/support/.+$})          { 'features' }
+  watch(%r{^features/step_definitions/(.+)_steps\.rb$}) { |m| Dir[File.join("**/#{m[1]}.feature")][0] || 'features' }
+end
 
-# guard :rubocop, cli: ['--format', 'clang', '--rails'] do
-#   watch(%r{.+\.rb$})
-#   watch(%r{(?:.+/)?\.rubocop\.yml$}) { |m| File.dirname(m[0]) }
-# end
+guard :rubocop, cli: ['--format', 'clang', '--rails'] do
+  watch(%r{.+\.rb$})
+  watch(%r{(?:.+/)?\.rubocop\.yml$}) { |m| File.dirname(m[0]) }
+end

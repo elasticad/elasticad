@@ -6,8 +6,10 @@ class Elasticad::Documents::Seo
   field :permalink, type: String
 
   embeds_one :meta
+  embedded_in :ad
 
   accepts_nested_attributes_for :meta
 
-  validates :permalink, presence: true, uniqueness: true
+  validates :permalink, presence: true,
+                        uniqueness: true
 end

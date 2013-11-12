@@ -9,4 +9,7 @@ class Elasticad::Documents::State
   field :spam,    type: Boolean, default: false
 
   embedded_in :ad
+
+  validates :premium, :enabled, :active, :spam,
+            inclusion: { in: [true, false] }
 end

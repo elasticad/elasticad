@@ -26,7 +26,7 @@ class Elasticad::Ad
   embeds_one :seo
 
   belongs_to :taxon
-  
+
   # nested attributes
   accepts_nested_attributes_for(:date)
   accepts_nested_attributes_for(:author)

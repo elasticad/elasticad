@@ -11,4 +11,5 @@ class Elasticad::Documents::Metadata
 
   validates :description, presence: true
   validates :title,       presence: true
+  validates :keywords,    presence: true
 end

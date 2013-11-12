@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require 'rubygems'
 require 'spork'
 #uncomment the following line to use spork with the debugger
@@ -52,8 +54,9 @@ Spork.prefork do
     # order dependency and want to debug it, you can fix the order by providing
     # the seed, which is printed after each run.
     #     --seed 1234
-    config.order = "random"
+    config.order = 'random'
     config.include Mongoid::Matchers, type: :model
+    config.include FactoryGirl::Syntax::Methods, type: :model
   end
 end
 
@@ -90,4 +93,3 @@ end
 #
 # These instructions should self-destruct in 10 seconds.  If they don't, feel
 # free to delete them.
-

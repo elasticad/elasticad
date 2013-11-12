@@ -9,6 +9,9 @@ class Elasticad::Documents::Email
 
   embedded_in :address
 
-  validates :text, presence: true#, email: true
+  validates :text, presence: true # , email: true
+  validates :primary, inclusion: { in: [true, false] }
+  validates :display, inclusion: { in: [true, false] }
+
   validates_formatting_of :text, using: :email
 end
