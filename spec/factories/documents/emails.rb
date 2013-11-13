@@ -3,7 +3,7 @@
 
 FactoryGirl.define do
   factory :email_document, class: 'Elasticad::Documents::Email' do
-    text    'me@example.dev'
+    email   'me@example.dev'
     display false
     primary true
   end

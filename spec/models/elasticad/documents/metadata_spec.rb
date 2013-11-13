@@ -67,5 +67,8 @@ describe Elasticad::Documents::Metadata do
                                         invalid_keywords_attribute)
       invalid_metadata_document.should_not be_valid
     end
+
+    xit 'length of items should be less than 10' do
+    end
   end
 end

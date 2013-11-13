@@ -25,4 +25,10 @@ describe Elasticad::Documents::Author do
                       .to_allow('127.0.0.1')
                       .not_to_allow('127001')
   end
+
+  it 'should create address document' do
+    author_document = build(:author_document)
+    author_document.build_address
+    author_document.address.should_not be_nil
+  end
 end

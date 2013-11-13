@@ -57,6 +57,9 @@ Spork.prefork do
     config.order = 'random'
     config.include Mongoid::Matchers, type: :model
     config.include FactoryGirl::Syntax::Methods, type: :model
+
+
+    config.before(:suite) { FactoryGirl.reload }
   end
 end
 

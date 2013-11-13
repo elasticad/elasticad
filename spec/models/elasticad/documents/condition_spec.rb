@@ -46,7 +46,8 @@ describe Elasticad::Documents::Condition do
 
   it 'should not be valid with other label value' do
     invalid_label_attribute = valid_attributes.merge(label: :super)
-    invalid_condition_document = build(:condition_document, invalid_label_attribute)
+    invalid_condition_document = build(:condition_document,
+                                       invalid_label_attribute)
     invalid_condition_document.should_not be_valid
   end
 
