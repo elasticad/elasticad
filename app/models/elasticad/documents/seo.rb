@@ -5,10 +5,10 @@ class Elasticad::Documents::Seo
 
   field :permalink, type: String
 
-  embeds_one :meta
-  embedded_in :ad
+  embeds_one :meta_data, class_name: 'Elasticad::Documents::Metadata'
+  embedded_in :ad, class_name: 'Elasticad::Ad'
 
-  accepts_nested_attributes_for :meta
+  accepts_nested_attributes_for :meta_data
 
   validates :permalink, presence: true,
                         uniqueness: true

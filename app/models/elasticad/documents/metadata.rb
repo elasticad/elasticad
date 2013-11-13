@@ -7,7 +7,7 @@ class Elasticad::Documents::Metadata
   field :title,       type: String
   field :keywords,    type: Array,  default: []
 
-  embedded_in :seo
+  embedded_in :seo, class_name: 'Elasticad::Documents::Seo'
 
   validates :description, presence: true
   validates :title,       presence: true

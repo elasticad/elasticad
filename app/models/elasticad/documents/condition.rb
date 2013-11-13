@@ -4,7 +4,7 @@ class Elasticad::Documents::Condition
   include Mongoid::Document
 
   field :percentage,  type: Integer,  default: 0
-  field :label,       type: String,   default: :old
+  field :label,       type: Symbol,   default: :old
 
   validates :percentage,  presence: true,
                           numericality: { only_integer: true,
@@ -14,5 +14,5 @@ class Elasticad::Documents::Condition
   validates :label,       presence: true,
                           inclusion: { in: [:old, :new, :good] }
 
-  embedded_in :ad
+  embedded_in :ad, class_name: 'Elasticad::Ad'
 end

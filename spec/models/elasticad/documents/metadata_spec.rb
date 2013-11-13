@@ -31,24 +31,24 @@ describe Elasticad::Documents::Metadata do
   specify { should validate_presence_of(:title) }
   specify { should validate_presence_of(:keywords) }
 
-  let(:valid_attributes) { attributes_for(:documents_metadata) }
+  let(:valid_attributes) { attributes_for(:metadata_document) }
 
   it 'should all attributes have a valid format' do
-    valid_metadata_document = build(:documents_metadata)
+    valid_metadata_document = build(:metadata_document)
     valid_metadata_document.should be_valid
   end
 
   describe '#keywords attribute' do
     it 'should not valid with empty items' do
       invalid_keywords_attribute = valid_attributes.merge(keywords: [])
-      invalid_metadata_document = build(:documents_metadata,
+      invalid_metadata_document = build(:metadata_document,
                                         invalid_keywords_attribute)
       invalid_metadata_document.should_not be_valid
     end
 
     xit 'should not have a valid format with nil items' do
       invalid_keywords_attribute = valid_attributes.merge(keywords: ['', nil])
-      invalid_metadata_document = build(:documents_metadata,
+      invalid_metadata_document = build(:metadata_document,
                                         invalid_keywords_attribute)
       invalid_metadata_document.should_not be_valid
     end
@@ -56,14 +56,14 @@ describe Elasticad::Documents::Metadata do
     xit 'type of items should be only string type' do
       invalid_keywords_attribute = valid_attributes
                                       .merge(keywords: [:hello, true, 1000])
-      invalid_metadata_document = build(:documents_metadata,
+      invalid_metadata_document = build(:metadata_document,
                                         invalid_keywords_attribute)
       invalid_metadata_document.should_not be_valid
     end
 
     xit 'length of items should be greater than one' do
       invalid_keywords_attribute = valid_attributes.merge(keywords: ['less'])
-      invalid_metadata_document = build(:documents_metadata,
+      invalid_metadata_document = build(:metadata_document,
                                         invalid_keywords_attribute)
       invalid_metadata_document.should_not be_valid
     end

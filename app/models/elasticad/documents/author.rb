@@ -5,9 +5,9 @@ class Elasticad::Documents::Author
 
   field :ip, type: String
 
-  embedded_in :ad
-  belongs_to :user
-  belongs_to :address
+  embedded_in :ad,      class_name: 'Elasticad::Ad'
+  belongs_to :user,     class_name: 'Elasticad::User'
+  belongs_to :address,  class_name: 'Elasticad::Address'
 
   validates :ip, presence: true
   validates_formatting_of :ip, using: :ip_address_v4

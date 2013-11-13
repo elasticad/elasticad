@@ -11,7 +11,7 @@ describe Elasticad::Documents::Condition do
 
   specify do
     should have_field(:label)
-              .of_type(String)
+              .of_type(Symbol)
               .with_default_value_of(:old)
   end
 
@@ -36,4 +36,18 @@ describe Elasticad::Documents::Condition do
     should validate_inclusion_of(:label)
               .to_allow([:old, :new, :good])
   end
+
+  let(:valid_attributes) { attributes_for(:condition_document) }
+
+  it 'should all attributes have a valid format' do
+    valid_condition_document = build(:condition_document)
+    valid_condition_document.should be_valid
+  end
+
+  it 'should not be valid with other label value' do
+    invalid_label_attribute = valid_attributes.merge(label: :super)
+    invalid_condition_document = build(:condition_document, invalid_label_attribute)
+    invalid_condition_document.should_not be_valid
+  end
+
 end

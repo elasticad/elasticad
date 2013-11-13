@@ -7,7 +7,7 @@ class Elasticad::Documents::Email
   field :display, type: Boolean, default: false
   field :primary, type: Boolean, default: false
 
-  embedded_in :address
+  embedded_in :address, class_name: 'Elasticad::Address'
 
   validates :text, presence: true # , email: true
   validates :primary, inclusion: { in: [true, false] }

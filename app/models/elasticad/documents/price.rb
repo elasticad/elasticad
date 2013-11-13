@@ -6,7 +6,7 @@ class Elasticad::Documents::Price
   field :amount,        type: Float, default: 0
   field :currency_code, type: String
 
-  embedded_in :ad
+  embedded_in :ad, class_name: 'Elasticad::Ad'
 
   validates :amount,        presence: true,
                             numericality: { greater_than_or_equal_to: 0 }

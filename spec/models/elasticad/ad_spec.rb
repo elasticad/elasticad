@@ -64,4 +64,36 @@ describe Elasticad::Ad do
   specify { should validate_presence_of(:title) }
   specify { should validate_presence_of(:description) }
   specify { should validate_presence_of(:type) }
+
+  describe 'create embedded documents' do
+    it 'should create seo document' do
+      ad = create(:ad_without_embedded)
+      ad.create_seo
+      ad.seo.should_not be_nil
+    end
+
+    it 'should create date document' do
+      ad = create(:ad_without_embedded)
+      ad.create_date
+      ad.date.should_not be_nil
+    end
+
+    it 'should create author document' do
+      ad = create(:ad_without_embedded)
+      ad.create_author
+      ad.author.should_not be_nil
+    end
+
+    it 'should create condition document' do
+      ad = create(:ad_without_embedded)
+      ad.create_condition
+      ad.condition.should_not be_nil
+    end
+
+    it 'should create state document do' do
+      ad = create(:ad_without_embedded)
+      ad.create_state
+      ad.state.should_not be_nil
+    end
+  end
 end

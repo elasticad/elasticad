@@ -8,7 +8,7 @@ class Elasticad::Documents::State
   field :active,  type: Boolean, default: false
   field :spam,    type: Boolean, default: false
 
-  embedded_in :ad
+  embedded_in :ad, class_name: 'Elasticad::Ad'
 
   validates :premium, :enabled, :active, :spam,
             inclusion: { in: [true, false] }

@@ -46,14 +46,12 @@ describe Elasticad::Documents::Email do
               .to_allow([true, false])
   end
 
-  let(:valid_attributes) do
-    { text: 'me@example.dev', display: false, primary: true }
-  end
+  let(:valid_attributes) { attributes_for(:email_document) }
+
 
   it 'should all attributes have a valid format' do
-    # email_document = Elasticad::Documents::Email.new(valid_attributes)
-    # using FactoryGirl
-    valid_email_document = build(:documents_email, valid_attributes)
+    valid_email_document = build(:email_document)
     valid_email_document.should be_valid
   end
+ 
 end

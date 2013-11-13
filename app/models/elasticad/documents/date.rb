@@ -8,5 +8,5 @@ class Elasticad::Documents::Date
   field :expire_at, type: DateTime
   field :deleted_at, type: DateTime
 
-  embedded_in :ad
+  embedded_in :ad, class_name: 'Elasticad::Ad'
 end

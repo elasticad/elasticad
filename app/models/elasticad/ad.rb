@@ -17,13 +17,13 @@ class Elasticad::Ad
   field :activation_hash,   type: String
 
   # relations
-  embeds_many :prices
+  embeds_many :prices,    class_name: 'Elasticad::Documents::Price'
 
-  embeds_one :date
-  embeds_one :author
-  embeds_one :condition
-  embeds_one :state
-  embeds_one :seo
+  embeds_one :date,       class_name: 'Elasticad::Documents::Date'
+  embeds_one :author,     class_name: 'Elasticad::Documents::Author'
+  embeds_one :condition,  class_name: 'Elasticad::Documents::Condition'
+  embeds_one :state,      class_name: 'Elasticad::Documents::State'
+  embeds_one :seo,        class_name: 'Elasticad::Documents::Seo'
 
   belongs_to :taxon
 
