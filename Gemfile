@@ -44,6 +44,7 @@ end
 
 gem 'slim-rails'
 # gem 'mongoid', '~> 3.1.0'
+gem 'mime-types'
 
 if ENV['LOCAL_GIT_REPO']
   gem 'mongoid', path: '../../mongoid/mongoid'
