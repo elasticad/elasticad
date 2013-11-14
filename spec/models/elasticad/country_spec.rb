@@ -35,6 +35,8 @@ describe Elasticad::Country do
 
   specify { should have_many(:regions) }
   
+  specify { should have_many(:states) }
+  
   # nested attributes
   specify { should accept_nested_attributes_for(:iso_standard) }
 
