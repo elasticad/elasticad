@@ -3,61 +3,71 @@
 require 'spec_helper'
 
 describe Elasticad::Address do
-  # fields
-  specify do
-    should have_field(:addresses)
-              .of_type(Array)
-              .with_default_value_of([])
+  describe 'fields' do
+    specify do
+      should have_field(:addresses)
+                .of_type(Array)
+                .with_default_value_of([])
+    end
+
+    specify do
+      should have_field(:type)
+                .of_type(Symbol)
+                .with_default_value_of(:personal)
+    end
+
+    specify do
+      should have_field(:company)
+                .of_type(String)
+                .with_default_value_of(nil)
+    end
+
+    specify do
+      should have_field(:websites)
+                .of_type(Array)
+                .with_default_value_of([])
+    end
+
+    specify { should be_timestamped_document }
   end
 
-  specify do
-    should have_field(:type)
-              .of_type(Symbol)
-              .with_default_value_of(:personal)
+  describe 'relations' do
+    specify { should embed_one(:name) }
+
+    specify { should belong_to(:city) }
+
+    specify { should belong_to(:city_area) }
+
+    specify { should embed_one(:availability) }
+
+    specify { should embed_many(:phones) }
+
+    specify { should embed_many(:emails) }
+
+    specify { should embed_one(:coordinate) }
   end
 
-  specify do
-    should have_field(:company)
-              .of_type(String)
-              .with_default_value_of(nil)
+  describe 'nested attributes' do
+    specify { should accept_nested_attributes_for(:name) }
+
+    specify { should accept_nested_attributes_for(:availability) }
+
+    specify { should accept_nested_attributes_for(:coordinate) }
   end
 
-  specify do
-    should have_field(:websites)
-              .of_type(Array)
-              .with_default_value_of([])
+  describe 'validations' do
+    describe '#type field' do
+      specify { should validate_presence_of(:type) }
+    end
+
+    describe '#phones field' do
+      specify { should validate_presence_of(:phones) }
+    end
+
+    describe '#emails field' do
+      specify { should validate_presence_of(:emails) }
+    end
   end
-
-  specify { should be_timestamped_document }
-
-  # relations
-  specify { should embed_one(:name) }
-
-  specify { should belong_to(:city) }
-
-  specify { should belong_to(:city_area) }
-
-  specify { should embed_one(:availability) }
-
-  specify { should embed_many(:phones) }
-
-  specify { should embed_many(:emails) }
-
-  specify { should embed_one(:coordinate) }
-
-  # nested attributes
-  specify { should accept_nested_attributes_for(:name) }
-
-  specify { should accept_nested_attributes_for(:availability) }
-
-  specify { should accept_nested_attributes_for(:coordinate) }
-
-  # validations
-  specify { should validate_presence_of(:type) }
-
-  specify { should validate_presence_of(:phones) }
-
-  specify { should validate_presence_of(:emails) }
 
   let(:valid_attributes) { attributes_for(:address) }
 

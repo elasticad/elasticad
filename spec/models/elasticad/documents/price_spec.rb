@@ -2,32 +2,39 @@
 require 'spec_helper'
 
 describe Elasticad::Documents::Price do
-  # fields
-  specify do
-    should have_field(:amount)
-              .of_type(Float)
-              .with_default_value_of(0)
+  describe 'fields' do
+    specify do
+      should have_field(:amount)
+                .of_type(Float)
+                .with_default_value_of(0)
+    end
+
+    specify do
+      should have_field(:currency_code)
+                .of_type(String)
+                .with_default_value_of(nil)
+    end
+
+    specify { should_not be_timestamped_document }
   end
 
-  specify do
-    should have_field(:currency_code)
-              .of_type(String)
-              .with_default_value_of(nil)
+  describe 'relations' do
+    specify { should be_embedded_in(:ad) }
   end
 
-  specify { should_not be_timestamped_document }
+  describe 'validations' do
+    describe '#amount field' do
+      specify { should validate_presence_of(:amount) }
 
-  # relations
-  specify { should be_embedded_in(:ad) }
+      specify do
+        should validate_numericality_of(:amount)
+                  .greater_than_or_equal_to(0)
+      end
+    end
 
-  # validations
-  specify { should validate_presence_of(:amount) }
-
-  specify do
-    should validate_numericality_of(:amount)
-              .greater_than_or_equal_to(0)
+    describe '#currency_code field' do
+      specify { should validate_presence_of(:currency_code) }
+      specify { should validate_length_of(:currency_code).within(3..5) }
+    end
   end
-
-  specify { should validate_presence_of(:currency_code) }
-  specify { should validate_length_of(:currency_code).within(3..5) }
 end

@@ -3,31 +3,36 @@
 require 'spec_helper'
 
 describe Elasticad::Documents::Availability do
-  # fields
-  specify do
-    should have_field(:days)
-              .of_type(Array)
-              .with_default_value_of([])
+  describe 'fields' do
+    specify do
+      should have_field(:days)
+                .of_type(Array)
+                .with_default_value_of([])
+    end
+
+    specify { should_not be_timestamped_document }
   end
 
-  specify { should_not be_timestamped_document }
-
-  # relations
-  specify { should be_embedded_in(:address) }
-  specify { should embed_many(:hours) }
-
-  # validation
-  xspecify do # only for items
-    should validate_numericality_of(:days)
-              .only_integer(true)
-              .greater_than_or_equal_to(0)
-              .less_than_or_equal_to(7)
+  describe 'relations' do
+    specify { should be_embedded_in(:address) }
+    specify { should embed_many(:hours) }
   end
 
-  xspecify do # only for items
-    should validate_inclusion_of(:days).to_allow(0..7)
-  end
+  describe 'validations' do
+    describe '#days field' do
+      xspecify do # only for items
+        should validate_numericality_of(:days)
+                  .only_integer(true)
+                  .greater_than_or_equal_to(0)
+                  .less_than_or_equal_to(7)
+      end
 
+      xspecify do # only for items
+        should validate_inclusion_of(:days).to_allow(0..7)
+      end
+    end
+  end
+  
   let(:valid_attributes) { attributes_for(:availability_document) }
 
   it 'should all attributes have a valid format' do

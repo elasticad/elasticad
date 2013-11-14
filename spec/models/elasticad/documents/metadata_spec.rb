@@ -2,34 +2,45 @@
 require 'spec_helper'
 
 describe Elasticad::Documents::Metadata do
-  # fields
-  specify do
-    should have_field(:description)
-              .of_type(String)
-              .with_default_value_of(nil)
+  describe 'fields' do
+    specify do
+      should have_field(:description)
+                .of_type(String)
+                .with_default_value_of(nil)
+    end
+
+    specify do
+      should have_field(:keywords)
+                .of_type(Array)
+                .with_default_value_of([])
+    end
+
+    specify do
+      should have_field(:title)
+                .of_type(String)
+                .with_default_value_of(nil)
+    end
+
+    specify { should_not be_timestamped_document }
   end
 
-  specify do
-    should have_field(:keywords)
-              .of_type(Array)
-              .with_default_value_of([])
+  describe 'relations' do
+    specify { should be_embedded_in(:seo) }
   end
 
-  specify do
-    should have_field(:title)
-              .of_type(String)
-              .with_default_value_of(nil)
+  describe 'validations' do
+    describe '#description field' do
+      specify { should validate_presence_of(:description) }
+    end
+
+    describe '#title field' do
+      specify { should validate_presence_of(:title) }
+    end
+
+    describe '#keywords field' do
+      specify { should validate_presence_of(:keywords) }
+    end
   end
-
-  specify { should_not be_timestamped_document }
-
-  # relations
-  specify { should be_embedded_in(:seo) }
-
-  # validations
-  specify { should validate_presence_of(:description) }
-  specify { should validate_presence_of(:title) }
-  specify { should validate_presence_of(:keywords) }
 
   let(:valid_attributes) { attributes_for(:metadata_document) }
 
