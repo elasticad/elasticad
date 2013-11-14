@@ -33,6 +33,8 @@ describe Elasticad::Country do
   # relations
   specify { should embed_one(:iso_standard) }
 
+  specify { should have_many(:regions) }
+  
   # nested attributes
   specify { should accept_nested_attributes_for(:iso_standard) }
 

@@ -13,6 +13,8 @@ class Elasticad::Country
   # relations
   embeds_one :iso_standard, class_name: 'Elasticad::Documents::IsoStandard'
 
+  has_many :regions, class_name: 'Elasticad::Region' 
+
   # nested attributes
   accepts_nested_attributes_for :iso_standard
   
