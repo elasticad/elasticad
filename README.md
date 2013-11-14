@@ -12,3 +12,6 @@ SUMMARY
 ElasticAd is a complete open source advertising classified engine built with Ruby on Rails.
 
 COMING SOON
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/elasticad/elasticad/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
