@@ -2,7 +2,8 @@
 
 class Elasticad::City
   include Mongoid::Document
-
+  include Mongoid::Timestamps
+  
   # fields
   field :name,    type: String
   field :zipcode, type: String

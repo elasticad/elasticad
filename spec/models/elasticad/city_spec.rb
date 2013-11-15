@@ -20,6 +20,8 @@ describe Elasticad::City do
                 .of_type(Symbol)
                 .with_default_value_of(:inactive)
     end
+
+    specify { should be_timestamped_document }
   end
 
   describe 'relations' do

@@ -2,7 +2,8 @@
 
 class Elasticad::State
   include Mongoid::Document
-
+  include Mongoid::Timestamps
+  
   # fields
   field :name,  type: String
   field :abbr,  type: String

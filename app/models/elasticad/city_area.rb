@@ -2,7 +2,8 @@
 
 class Elasticad::CityArea
   include Mongoid::Document
-
+  include Mongoid::Timestamps
+  
   # fields
   field :name,  type: String
   field :state, type: Symbol, default: :inactive
