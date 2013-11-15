@@ -21,3 +21,6 @@ SCHEMA DEFINITIONS
 
 
 COMING SOON
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/elasticad/elasticad/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
