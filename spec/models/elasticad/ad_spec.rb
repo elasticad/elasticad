@@ -53,6 +53,7 @@ describe Elasticad::Ad do
     specify { should embed_one(:state) }
     specify { should embed_one(:seo) }
     specify { should belong_to(:taxon) }
+    specify { should have_many(:comments) }
   end
 
   describe 'nested attributes' do

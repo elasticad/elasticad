@@ -27,6 +27,8 @@ class Elasticad::Ad
 
   belongs_to :taxon
 
+  has_many :comments,     class_name: 'Elasticad::AdComment'
+
   # nested attributes
   accepts_nested_attributes_for(:date)
   accepts_nested_attributes_for(:author)
