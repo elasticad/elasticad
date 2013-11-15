@@ -9,6 +9,14 @@ SUMMARY
 -------
 
 
-ElasticAd is a complete open source advertising classified engine built with Ruby on Rails.
+ElasticAd is a complete open source advertising classified engine built with Ruby on Rails. It's a free to create Classifieds sites.
+
+SCHEMA DEFINITIONS
+------------------
+
+
+[MongoDb json-schema definitions](https://github.com/elasticad/mongodb-schema-design)
+
+
 
 COMING SOON
