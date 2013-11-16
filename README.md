@@ -4,6 +4,7 @@
 [![Code Climate](https://codeclimate.com/github/elasticad/elasticad.png)](https://codeclimate.com/github/elasticad/elasticad)
 [![Dependency Status](https://gemnasium.com/elasticad/elasticad.png)](https://gemnasium.com/elasticad/elasticad)
 [![Build Status](https://travis-ci.org/elasticad/elasticad.png?branch=master)](https://travis-ci.org/elasticad/elasticad)
+[![Security Status](http://rails-brakeman.com/elasticad/elasticad.png)](http://rails-brakeman.com/elasticad/elasticad)
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/elasticad/elasticad/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
 SUMMARY
