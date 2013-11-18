@@ -40,4 +40,13 @@ class Elasticad::Ad
   validates :title, presence: true
   validates :description, presence: true
   validates :type, presence: true
+
+
+
+  def price(currency_code = :usd)
+    # prices.select(&:'currency_code == currency_code').first
+    prices.select do |price|
+      price.currency_code == currency_code.upcase.to_s
+    end.first.try(:amount)
+  end
 end

@@ -12,4 +12,8 @@ class Elasticad::Documents::Price
                             numericality: { greater_than_or_equal_to: 0 }
   validates :currency_code, presence: true,
                             length: { within: 3..5 }
+
+  after_initialize do |document| 
+    document.currency_code.try(:upcase!)
+  end
 end

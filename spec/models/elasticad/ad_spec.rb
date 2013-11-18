@@ -78,6 +78,55 @@ describe Elasticad::Ad do
     end
   end
 
+  describe '#price attribute' do
+    specify { should respond_to(:price) }
+
+    it 'should receive price with default currency parameter' do
+      subject.should_receive(:price)
+      subject.price
+    end
+
+    it 'should receive price with currency' do
+      subject.should_receive(:price).with(:usd)
+      subject.price(:usd)
+    end
+
+    it 'should receive price with parameter as a String object' do
+      subject.should_receive(:price).with(kind_of(String))
+      subject.price('usd')
+    end
+
+    it 'should receive price with parameter as a Symbol object' do
+      subject.should_receive(:price).with(kind_of(Symbol))
+      subject.price(:usd)
+    end
+
+    it 'should return an amount that match a currency' do
+      ad = create(:ad)
+      ad.prices = [Elasticad::Documents::Price.new(amount: 200, currency_code: :dinor)]
+      ad.price(:dinor).should eq 200
+    end    
+
+    it 'should return a random amount that match a currency' do
+      ad = create(:ad)
+      amount = rand(200..500)
+      ad.prices = [Elasticad::Documents::Price.new(amount: amount, currency_code: :dinor)]
+      ad.price(:dinor).should eq amount
+    end
+
+    it 'should return an amount for default currency' do
+      ad = create(:ad)
+      ad.prices = [Elasticad::Documents::Price.new(amount: 200, currency_code: :usd)]
+      ad.price.should eq 200
+    end
+
+    it 'should be nil with unknown currency' do
+      ad = create(:ad)
+      ad.prices = [Elasticad::Documents::Price.new(amount: 200, currency_code: :dinor)]
+      ad.price(:oops).should be_nil
+    end        
+  end
+
   describe 'create embedded documents' do
     it 'should create seo document' do
       ad = create(:ad)
