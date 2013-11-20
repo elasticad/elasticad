@@ -62,7 +62,11 @@ Spork.prefork do
     config.include FactoryGirl::Syntax::Methods, type: :model
 
 
-    config.before(:suite) { FactoryGirl.reload }
+    # config.before(:suite) { FactoryGirl.reload }
+    config.before do
+      FactoryGirl.reload
+      Mongoid.purge!
+    end
   end
 end
 
