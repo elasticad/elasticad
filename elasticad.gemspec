@@ -19,5 +19,5 @@ Gem::Specification.new do |s|
   s.homepage     = 'https://github.com/elasticad/elasticad'
   s.license      = %q{MIT}
 
-  s.add_dependency 'elasticad_core', version
+  #s.add_dependency 'elasticad_core', version
 end
