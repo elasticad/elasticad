@@ -13,7 +13,7 @@ class Elasticad::Documents::Price
   validates :currency_code, presence: true,
                             length: { within: 3..5 }
 
-  after_initialize do |document| 
-    document.currency_code.try(:upcase!)
-  end
+  # after_initialize do |document| 
+  #   document.currency_code.try(:upcase!)
+  # end
 end

@@ -15,6 +15,7 @@ class Elasticad::Ad
   field :placement_period,  type: Integer,        default: 0
   # field :prices,            type: Array,          default: []
   field :activation_hash,   type: String
+  field :state,             type: Symbol,         default: :inactive
 
   # relations
   embeds_many :prices,    class_name: 'Elasticad::Documents::Price'
@@ -22,7 +23,6 @@ class Elasticad::Ad
   embeds_one :date,       class_name: 'Elasticad::Documents::Date'
   embeds_one :author,     class_name: 'Elasticad::Documents::Author'
   embeds_one :condition,  class_name: 'Elasticad::Documents::Condition'
-  embeds_one :state,      class_name: 'Elasticad::Documents::State'
   embeds_one :seo,        class_name: 'Elasticad::Documents::Seo'
 
   belongs_to :taxon
@@ -33,20 +33,20 @@ class Elasticad::Ad
   accepts_nested_attributes_for(:date)
   accepts_nested_attributes_for(:author)
   accepts_nested_attributes_for(:condition)
-  accepts_nested_attributes_for(:state)
   accepts_nested_attributes_for(:seo)
 
   # validations
-  validates :title, presence: true
+  validates :title,       presence: true
   validates :description, presence: true
-  validates :type, presence: true
-
+  validates :type,        presence: true
+  validates :state,       inclusion: { in: [:inactive, :active, :enabled, :disabled, :spam, :premium] }
 
 
   def price(currency_code = :usd)
     # prices.select(&:'currency_code == currency_code').first
+    currency_code = currency_code.try(:upcase).to_s    
     prices.select do |price|
-      price.currency_code == currency_code.upcase.to_s
+      price.currency_code.try(:upcase) == currency_code
     end.first.try(:amount)
   end
 end
