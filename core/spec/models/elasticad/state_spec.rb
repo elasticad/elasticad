@@ -2,6 +2,8 @@
 require 'spec_helper'
 
 describe Elasticad::State do
+  let(:state) { build(:state) }
+  
   describe 'fields' do
     specify do
       should have_field(:name)
@@ -54,8 +56,23 @@ describe Elasticad::State do
     end
   end
 
+  describe '#state attribute' do
+    it 'should be kind of a StringInquiry object' do
+      state.state.should be_kind_of(ActiveSupport::StringInquirer)
+    end
+
+    it 'should be active' do
+      state.state = :active
+      state.state.should be_active
+    end
+
+    it 'should not be active' do
+      state.state = :inactive
+      state.state.should_not be_active
+    end
+  end
+
   it 'should all attributes have a valid format' do
-    state = build(:state)
     state.should be_valid
   end
 end

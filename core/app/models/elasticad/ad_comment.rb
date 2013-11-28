@@ -21,7 +21,15 @@ class Elasticad::AdComment
   validates :body, presence: true,
                    length: { within: 10..500 }
 
-  validates :state, inclusion: { in: [:inactive, :active, :enabled, :disabled, :spam] }            
+  validates :state, inclusion: { in: [:inactive, :active, :enabled, :disabled, :spam,
+                                      'inactive', 'active', 'enabled', 'disabled', 'spam'] }            
 
   validates :author, presence: true
+
+
+  alias_method :old_state, :state
+
+  def state
+    old_state.to_s.inquiry
+  end
 end

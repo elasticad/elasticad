@@ -39,7 +39,8 @@ class Elasticad::Ad
   validates :title,       presence: true
   validates :description, presence: true
   validates :type,        presence: true
-  validates :state,       inclusion: { in: [:inactive, :active, :enabled, :disabled, :spam, :premium] }
+  validates :state,       inclusion: { in: [:inactive, :active, :enabled, :disabled, :spam, :premium,
+                                            'inactive', 'active', 'enabled', 'disabled', 'spam', 'premium'] }
 
 
   def price(currency_code = :usd)
@@ -48,5 +49,11 @@ class Elasticad::Ad
     prices.select do |price|
       price.currency_code.try(:upcase) == currency_code
     end.first.try(:amount)
+  end
+
+  alias_method :old_state, :state
+
+  def state
+    old_state.to_s.inquiry
   end
 end

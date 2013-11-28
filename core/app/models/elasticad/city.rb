@@ -17,5 +17,13 @@ class Elasticad::City
   validates :name, presence: true,
                    length: { within: 3..40 }
                    
-  validates :state, inclusion: { in: [:active, :inactive] }
+  validates :state, inclusion: { in: [:active, :inactive, 'active', 'inactive'] }
+
+
+
+  alias_method :old_state, :state
+
+  def state
+    old_state.to_s.inquiry
+  end  
 end

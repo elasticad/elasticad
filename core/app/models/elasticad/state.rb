@@ -19,5 +19,11 @@ class Elasticad::State
   validates :abbr, presence: true,
                    format: { with: /\A[a-z]{2}\z/i }
 
-  validates :state, inclusion: { in: [:inactive, :active] }
+  validates :state, inclusion: { in: [:inactive, :active, 'inactive', 'active'] }
+
+  alias_method :old_state, :state
+
+  def state
+    old_state.to_s.inquiry
+  end  
 end

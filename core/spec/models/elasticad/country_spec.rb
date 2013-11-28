@@ -3,6 +3,8 @@
 require 'spec_helper'
 
 describe Elasticad::Country do
+  let(:country) { build(:country) }
+
   describe 'fields' do
     specify do
       should have_field(:name)
@@ -80,6 +82,22 @@ describe Elasticad::Country do
     end
   end
   
+  describe '#state attribute' do
+    it 'should be kind of a StringInquiry object' do
+      country.state.should be_kind_of(ActiveSupport::StringInquirer)
+    end
+
+    it 'should be active' do
+      country.state = :active
+      country.state.should be_active
+    end
+
+    it 'should not be active' do
+      country.state = :inactive
+      country.state.should_not be_active
+    end
+  end
+
   it 'should all attributes have a valid format' do
     valid_country = build(:country)
     valid_country.should be_valid
@@ -89,7 +107,6 @@ describe Elasticad::Country do
 
   describe 'create embedded documents' do
     it 'should create iso_standard document' do
-      country = build(:country)
       country.build_iso_standard
       country.iso_standard.should_not be_nil
     end

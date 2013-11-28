@@ -3,6 +3,8 @@
 require 'spec_helper'
 
 describe Elasticad::Region do
+  let(:region) { build(:region) }
+  
   describe 'fields' do
     specify do
       should have_field(:name)
@@ -39,8 +41,23 @@ describe Elasticad::Region do
     end
   end
 
+  describe '#state attribute' do
+    it 'should be kind of a StringInquiry object' do
+      region.state.should be_kind_of(ActiveSupport::StringInquirer)
+    end
+
+    it 'should be active' do
+      region.state = :active
+      region.state.should be_active
+    end
+
+    it 'should not be active' do
+      region.state = :inactive
+      region.state.should_not be_active
+    end
+  end
+
   it 'should all attributes have a valid format' do
-    region = build(:region)
     region.should be_valid
   end
 end

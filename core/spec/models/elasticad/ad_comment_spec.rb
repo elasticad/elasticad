@@ -53,6 +53,44 @@ describe Elasticad::AdComment do
     end
   end
 
+  describe '#state attribute' do
+    let(:ad_comment) { build(:ad_comment) }
+
+    it 'should be kind of a StringInquiry object' do
+      ad_comment.state.should be_kind_of(ActiveSupport::StringInquirer)
+    end
+
+    it 'should be active' do
+      ad_comment.state = :active
+      ad_comment.state.should be_active
+    end
+
+    it 'should not be active' do
+      ad_comment.state = :inactive
+      ad_comment.state.should_not be_active
+    end
+
+    it 'should be enabled' do
+      ad_comment.state = :enabled
+      ad_comment.state.should be_enabled
+    end
+
+    it 'should not be enabled' do
+      ad_comment.state = :disabled
+      ad_comment.state.should_not be_enabled
+    end
+
+    it 'should be spam' do
+      ad_comment.state = :spam
+      ad_comment.state.should be_spam
+    end
+
+    it 'should not be spam' do
+      ad_comment.state = :active
+      ad_comment.state.should_not be_spam
+    end          
+  end
+
   it 'should all attributes have a valid format' do
     ad_comment = build(:created_ad_comment_child)
     ad_comment.should be_valid
