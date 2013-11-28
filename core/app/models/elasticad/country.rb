@@ -31,7 +31,9 @@ class Elasticad::Country
 
   validates :states_required, inclusion: { in: [true, false] }
 
-  validates :state, inclusion: { in: [:active, :inactive, 'active', 'inactive'] }
+  STATES = %w(inactive active)
+
+  validates :state, inclusion: { in: [*STATES, *STATES.map(&:to_sym)] }
 
   alias_method :old_state, :state
 

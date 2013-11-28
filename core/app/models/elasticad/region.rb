@@ -16,8 +16,10 @@ class Elasticad::Region
   # validation
   validates :name,  presence: true,
                     length: { within: 3..40 }
-                    
-  validates :state, inclusion: { in: [:active, :inactive, 'active', 'inactive'] }
+
+  STATES = %w(inactive active)
+
+  validates :state, inclusion: { in: [*STATES, *STATES.map(&:to_sym)] }
 
   alias_method :old_state, :state
 

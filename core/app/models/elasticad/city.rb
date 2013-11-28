@@ -16,8 +16,10 @@ class Elasticad::City
   # validations
   validates :name, presence: true,
                    length: { within: 3..40 }
-                   
-  validates :state, inclusion: { in: [:active, :inactive, 'active', 'inactive'] }
+
+  STATES = %w(inactive active)
+
+  validates :state, inclusion: { in: [*STATES, *STATES.map(&:to_sym)] }
 
 
 

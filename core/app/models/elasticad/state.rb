@@ -19,7 +19,9 @@ class Elasticad::State
   validates :abbr, presence: true,
                    format: { with: /\A[a-z]{2}\z/i }
 
-  validates :state, inclusion: { in: [:inactive, :active, 'inactive', 'active'] }
+  STATES = %w(inactive active)
+
+  validates :state, inclusion: { in: [*STATES, *STATES.map(&:to_sym)] }
 
   alias_method :old_state, :state
 

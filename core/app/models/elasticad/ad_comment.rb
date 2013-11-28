@@ -21,8 +21,9 @@ class Elasticad::AdComment
   validates :body, presence: true,
                    length: { within: 10..500 }
 
-  validates :state, inclusion: { in: [:inactive, :active, :enabled, :disabled, :spam,
-                                      'inactive', 'active', 'enabled', 'disabled', 'spam'] }            
+  STATES = %w(inactive active enabled disabled spam)
+
+  validates :state, inclusion: { in: [*STATES, *STATES.map(&:to_sym)] }            
 
   validates :author, presence: true
 

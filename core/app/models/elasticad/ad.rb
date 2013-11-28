@@ -35,12 +35,13 @@ class Elasticad::Ad
   accepts_nested_attributes_for(:condition)
   accepts_nested_attributes_for(:seo)
 
+  STATES = %w(inactive active enabled disabled spam premium)
+
   # validations
   validates :title,       presence: true
   validates :description, presence: true
   validates :type,        presence: true
-  validates :state,       inclusion: { in: [:inactive, :active, :enabled, :disabled, :spam, :premium,
-                                            'inactive', 'active', 'enabled', 'disabled', 'spam', 'premium'] }
+  validates :state,       inclusion: { in: [*STATES, *STATES.map(&:to_sym)] }
 
 
   def price(currency_code = :usd)
