@@ -46,13 +46,14 @@ describe Elasticad::Documents::Phone do
     end
   end
 
+  describe 'attributes' do
+    let(:valid_attributes) { attributes_for(:phone_document) }
 
-  let(:valid_attributes) { attributes_for(:phone_document) }
+    it 'should valid only with phone format'
 
-  it 'should valid only with phone format'
-
-  it 'should all attributes have a valid format' do
-    valid_phone_document = build(:phone_document)
-    valid_phone_document.should be_valid
+    it 'should all attributes have a valid format' do
+      valid_phone_document = build(:phone_document)
+      valid_phone_document.should be_valid
+    end
   end
 end

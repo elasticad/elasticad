@@ -57,9 +57,11 @@ describe Elasticad::Documents::Icon do
     end
   end
 
-  let(:icon) { build(:icon) }
+  describe 'attributes' do
+    let(:icon) { build(:icon) }
 
-  it 'should all attributes have a valid format' do
-    icon.should be_valid
-  end  
+    it 'should all attributes have a valid format' do
+      icon.should be_valid
+    end
+  end
 end

@@ -39,8 +39,10 @@ describe Elasticad::Documents::Geo do
     end
   end
     
-  it 'should all attributes have a valid format' do
-    valid_geo_document = build(:geo_document)
-    valid_geo_document.should be_valid
+  describe 'attributes' do    
+    it 'should all attributes have a valid format' do
+      valid_geo_document = build(:geo_document)
+      valid_geo_document.should be_valid
+    end
   end
 end

@@ -94,8 +94,10 @@ describe Elasticad::Documents::Attachment do
     end
   end
 
-  it 'should all attribute have a valid format' do
-    attachment_document = build(:attachment_document)
-    attachment_document.should be_valid
+  describe 'attributes' do
+    it 'should all attribute have a valid format' do
+      attachment_document = build(:attachment_document)
+      attachment_document.should be_valid
+    end
   end
 end

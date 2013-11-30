@@ -14,6 +14,7 @@ class Elasticad::Taxonomy
   field :lft,         type: Integer,        default: 0
   field :rgt,         type: Integer,        default: 0
   field :depth,       type: Integer,        default: 0
+  field :state,       type: Symbol,         default: :inactive
 
   # relations
   embeds_one :icon, class_name: 'Elasticad::Documents::Icon'
@@ -25,8 +26,19 @@ class Elasticad::Taxonomy
 
   # validations
   validates :name,        presence: true, length: { within: 3..255 }
-  validates :description, presence: true, length: { within: 3..500 }
+  validates :description, # presence: true, 
+                          length: { within: 3..500 }
 
   validates :position, :lft, :rgt, :depth, numericality: { only_integer: true, 
                                                            greater_than_or_equal_to: 0 }
+
+  STATES = %w(inactive active)
+
+  validates :state, inclusion: { in: [*STATES, *STATES.map(&:to_sym)] }
+
+  alias_method :old_state, :state
+
+  def state
+    old_state.to_s.inquiry
+  end
 end

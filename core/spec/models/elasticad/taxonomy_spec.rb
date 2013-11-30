@@ -2,6 +2,8 @@
 require 'spec_helper'
 
 describe Elasticad::Taxonomy do
+  let(:taxonomy) { create(:taxonomy) }
+
   describe 'fields' do
     specify do
       should have_field(:parent_id)
@@ -45,6 +47,12 @@ describe Elasticad::Taxonomy do
                 .with_default_value_of(0)
     end
 
+    specify do
+      should have_field(:state)
+                .of_type(Symbol)
+                .with_default_value_of(:inactive)
+    end
+
     specify { should be_timestamped_document }
   end
 
@@ -74,7 +82,7 @@ describe Elasticad::Taxonomy do
     end
 
     describe '#description field' do
-      specify { should validate_presence_of(:description) }
+      xspecify { should validate_presence_of(:description) }
       specify { should validate_length_of(:description).within(3..500) }
       it 'should accept only words'
     end
@@ -102,13 +110,37 @@ describe Elasticad::Taxonomy do
                   .greater_than_or_equal_to(0)
       end
     end
+
+    describe '#state field' do
+      specify do
+        should validate_inclusion_of(:state)
+                  .to_allow([:active, :inactive])
+      end      
+    end    
   end
 
-  let(:taxonomy) { create(:taxonomy) }
+  describe 'attributes' do
+    describe '#state attribute' do
+      it 'should be kind of a StringInquiry object' do
+        taxonomy.state.should be_kind_of(ActiveSupport::StringInquirer)
+      end
 
-  it 'should all attributes have a valid format' do
-    taxonomy.should be_valid
+      it 'should be active' do
+        taxonomy.state = :active
+        taxonomy.state.should be_active
+      end
+
+      it 'should not be active' do
+        taxonomy.state = :inactive
+        taxonomy.state.should_not be_active
+      end
+    end
+    
+    it 'should all attributes have a valid format' do
+      taxonomy.should be_valid
+    end
   end
+
 
   describe 'create embedded documents' do
     it 'should create seo document' do

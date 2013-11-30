@@ -82,29 +82,31 @@ describe Elasticad::Country do
     end
   end
   
-  describe '#state attribute' do
-    it 'should be kind of a StringInquiry object' do
-      country.state.should be_kind_of(ActiveSupport::StringInquirer)
+  describe 'attributes' do
+    describe '#state attribute' do
+      it 'should be kind of a StringInquiry object' do
+        country.state.should be_kind_of(ActiveSupport::StringInquirer)
+      end
+
+      it 'should be active' do
+        country.state = :active
+        country.state.should be_active
+      end
+
+      it 'should not be active' do
+        country.state = :inactive
+        country.state.should_not be_active
+      end
     end
 
-    it 'should be active' do
-      country.state = :active
-      country.state.should be_active
+    it 'should all attributes have a valid format' do
+      valid_country = build(:country)
+      valid_country.should be_valid
     end
 
-    it 'should not be active' do
-      country.state = :inactive
-      country.state.should_not be_active
-    end
+    it '#name attribute should only accept letter'
   end
-
-  it 'should all attributes have a valid format' do
-    valid_country = build(:country)
-    valid_country.should be_valid
-  end
-
-  it '#name attribute should only accept letter'
-
+  
   describe 'create embedded documents' do
     it 'should create iso_standard document' do
       country.build_iso_standard

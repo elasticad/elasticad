@@ -50,23 +50,26 @@ describe Elasticad::City do
     end
   end
 
-  describe '#state attribute' do
-    it 'should be kind of a StringInquiry object' do
-      city.state.should be_kind_of(ActiveSupport::StringInquirer)
-    end
+  describe 'attributes' do
+    describe '#state attribute' do
+      it 'should be kind of a StringInquiry object' do
+        city.state.should be_kind_of(ActiveSupport::StringInquirer)
+      end
 
-    it 'should be active' do
-      city.state = :active
-      city.state.should be_active
-    end
+      it 'should be active' do
+        city.state = :active
+        city.state.should be_active
+      end
 
-    it 'should not be active' do
-      city.state = :inactive
-      city.state.should_not be_active
+      it 'should not be active' do
+        city.state = :inactive
+        city.state.should_not be_active
+      end
+    end
+    
+    it 'should all attributes have a valid format' do
+      city.should be_valid
     end
   end
-
-  it 'should all attributes have a valid format' do
-    city.should be_valid
-  end
+  
 end

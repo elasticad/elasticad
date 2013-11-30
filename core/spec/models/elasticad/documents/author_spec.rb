@@ -31,10 +31,11 @@ describe Elasticad::Documents::Author do
     end
   end
 
-  
-  it 'should create address document' do
-    author_document = build(:author_document)
-    author_document.build_address
-    author_document.address.should_not be_nil
+  describe 'attributes' do
+    it 'should create address document' do
+      author_document = build(:author_document)
+      author_document.build_address
+      author_document.address.should_not be_nil
+    end
   end
 end

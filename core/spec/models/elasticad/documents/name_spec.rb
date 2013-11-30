@@ -45,15 +45,17 @@ describe Elasticad::Documents::Name do
     end
   end
 
-  describe '#first_name attribute' do
-    it 'should valid only with letter characters'
-  end
+  describe 'attributes' do
+    describe '#first_name attribute' do
+      it 'should valid only with letter characters'
+    end
 
-  describe '#middle_name attribute' do
-    it 'should valid only with letter characters'
-  end
+    describe '#middle_name attribute' do
+      it 'should valid only with letter characters'
+    end
 
-  describe '#last_name attribute' do
-    it 'should valid only with letter characters'
+    describe '#last_name attribute' do
+      it 'should valid only with letter characters'
+    end
   end
 end

@@ -30,9 +30,11 @@ describe Elasticad::Documents::Seo do
     end
   end
 
-  it 'should create metadata document' do
-    seo_document = build(:seo_document)
-    seo_document.build_meta_data
-    seo_document.meta_data.should_not be_nil
+  describe 'attributes' do
+    it 'should create metadata document' do
+      seo_document = build(:seo_document)
+      seo_document.build_meta_data
+      seo_document.meta_data.should_not be_nil
+    end
   end
 end

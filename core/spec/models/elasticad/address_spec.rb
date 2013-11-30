@@ -71,89 +71,92 @@ describe Elasticad::Address do
 
   let(:valid_attributes) { attributes_for(:address) }
 
-  it 'should all attributes have a valid format' do
-    valid_address = build(:built_address_child)
-    valid_address.should be_valid
+
+  describe 'attributes' do
+    it 'should all attributes have a valid format' do
+      valid_address = build(:built_address_child)
+      valid_address.should be_valid
+    end
+    
+    describe '#emails attribute' do
+      it 'should not valid with empty items' do
+        invalid_address = build(:built_address_child)
+        invalid_address.emails = []
+        invalid_address.should_not be_valid
+      end
+
+      xit 'length of items should be less than 10' do
+      end
+    end
+
+    describe '#phones attribute' do
+      it 'should not valid with empty items' do
+        invalid_address = build(:built_address_child)
+        invalid_address.phones = []
+        invalid_address.should_not be_valid
+      end
+
+      xit 'length of items should be less than 10' do
+      end
+    end
+
+    describe '#addresses attribute' do
+      xit 'should not valid with empty items' do
+        invalid_addresses_attribute = valid_attributes.merge(addresses: [])
+        invalid_address = build(:built_address_child,
+                                invalid_addresses_attribute)
+        invalid_address.should_not be_valid
+      end
+
+      xit 'should not have a valid format with nil items' do
+        invalid_addresses_attribute = valid_attributes
+                                        .merge(addresses: ['', nil])
+        invalid_address = build(:built_address_child,
+                                invalid_addresses_attribute)
+        invalid_address.should_not be_valid
+      end
+
+      xit 'type of items should be only string type' do
+        invalid_addresses_attribute = valid_attributes
+                                        .merge(addresses: [:hello, true, 1000])
+        invalid_address = build(:built_address_child,
+                                invalid_addresses_attribute)
+        invalid_address.should_not be_valid
+      end
+
+      xit 'length of items should be less than 10' do
+      end
+    end
+
+    describe '#websites attribute' do
+      xit 'should not valid with empty items' do
+        invalid_websites_attribute = valid_attributes.merge(websites: [])
+        invalid_address = build(:built_address_child,
+                                invalid_websites_attribute)
+        invalid_address.should_not be_valid
+      end
+
+      xit 'should not have a valid format with nil items' do
+        invalid_websites_attribute = valid_attributes
+                                        .merge(websites: ['', nil])
+        invalid_address = build(:built_address_child,
+                                invalid_websites_attribute)
+        invalid_address.should_not be_valid
+      end
+
+      xit 'type of items should be only url format' do
+        invalid_websites_attribute = valid_attributes
+                                        .merge(websites: [:hello, true, 1000])
+        invalid_address = build(:built_address_child,
+                                invalid_websites_attribute)
+        invalid_address.should_not be_valid
+      end
+
+      xit 'length of items should be less than 10' do
+      end
+    end
   end
-
-  describe '#emails attribute' do
-    it 'should not valid with empty items' do
-      invalid_address = build(:built_address_child)
-      invalid_address.emails = []
-      invalid_address.should_not be_valid
-    end
-
-    xit 'length of items should be less than 10' do
-    end
-  end
-
-  describe '#phones attribute' do
-    it 'should not valid with empty items' do
-      invalid_address = build(:built_address_child)
-      invalid_address.phones = []
-      invalid_address.should_not be_valid
-    end
-
-    xit 'length of items should be less than 10' do
-    end
-  end
-
-  describe '#addresses attribute' do
-    xit 'should not valid with empty items' do
-      invalid_addresses_attribute = valid_attributes.merge(addresses: [])
-      invalid_address = build(:built_address_child,
-                              invalid_addresses_attribute)
-      invalid_address.should_not be_valid
-    end
-
-    xit 'should not have a valid format with nil items' do
-      invalid_addresses_attribute = valid_attributes
-                                      .merge(addresses: ['', nil])
-      invalid_address = build(:built_address_child,
-                              invalid_addresses_attribute)
-      invalid_address.should_not be_valid
-    end
-
-    xit 'type of items should be only string type' do
-      invalid_addresses_attribute = valid_attributes
-                                      .merge(addresses: [:hello, true, 1000])
-      invalid_address = build(:built_address_child,
-                              invalid_addresses_attribute)
-      invalid_address.should_not be_valid
-    end
-
-    xit 'length of items should be less than 10' do
-    end
-  end
-
-  describe '#websites attribute' do
-    xit 'should not valid with empty items' do
-      invalid_websites_attribute = valid_attributes.merge(websites: [])
-      invalid_address = build(:built_address_child,
-                              invalid_websites_attribute)
-      invalid_address.should_not be_valid
-    end
-
-    xit 'should not have a valid format with nil items' do
-      invalid_websites_attribute = valid_attributes
-                                      .merge(websites: ['', nil])
-      invalid_address = build(:built_address_child,
-                              invalid_websites_attribute)
-      invalid_address.should_not be_valid
-    end
-
-    xit 'type of items should be only url format' do
-      invalid_websites_attribute = valid_attributes
-                                      .merge(websites: [:hello, true, 1000])
-      invalid_address = build(:built_address_child,
-                              invalid_websites_attribute)
-      invalid_address.should_not be_valid
-    end
-
-    xit 'length of items should be less than 10' do
-    end
-  end
-
+  
   describe 'create embedded documents' do
     let(:address) { build(:address) }
 

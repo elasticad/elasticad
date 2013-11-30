@@ -67,10 +67,12 @@ describe Elasticad::Documents::IsoStandard do
     end
   end
 
-  it '#iso_name attribute should only accepts letter'
+  describe 'attributes' do
+    it '#iso_name attribute should only accepts letter'
 
-  it 'should all attributes have a valid format' do
-    iso_standard_document = build(:iso_standard_document)
-    iso_standard_document.should be_valid
+    it 'should all attributes have a valid format' do
+      iso_standard_document = build(:iso_standard_document)
+      iso_standard_document.should be_valid
+    end
   end
 end

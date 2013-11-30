@@ -42,8 +42,10 @@ describe Elasticad::Preference do
     end
   end
 
-  it 'should all attributes have a valid format' do
-    preference = build(:preference)
-    preference.should be_valid
+  describe 'attributes' do
+    it 'should all attributes have a valid format' do
+      preference = build(:preference)
+      preference.should be_valid
+    end
   end
 end

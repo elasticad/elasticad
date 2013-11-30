@@ -55,11 +55,12 @@ describe Elasticad::Documents::Email do
     end
   end
   
-  let(:valid_attributes) { attributes_for(:email_document) }
+  describe 'attributes' do
+    let(:valid_attributes) { attributes_for(:email_document) }
 
-  it 'should all attributes have a valid format' do
-    valid_email_document = build(:email_document)
-    valid_email_document.should be_valid
+    it 'should all attributes have a valid format' do
+      valid_email_document = build(:email_document)
+      valid_email_document.should be_valid
+    end
   end
-
 end

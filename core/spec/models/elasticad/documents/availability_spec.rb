@@ -33,47 +33,49 @@ describe Elasticad::Documents::Availability do
     end
   end
   
-  let(:valid_attributes) { attributes_for(:availability_document) }
+  describe 'attributes' do  
+    let(:valid_attributes) { attributes_for(:availability_document) }
 
-  it 'should all attributes have a valid format' do
-    valid_availability_document = build(:availability_document)
-    valid_availability_document.should be_valid
+    it 'should all attributes have a valid format' do
+      valid_availability_document = build(:availability_document)
+      valid_availability_document.should be_valid
+    end
+
+    describe '#days attribute' do
+      xit 'should not valid with empty items' do
+        invalid_days_attribute = valid_attributes.merge(days: [])
+        invalid_availability_document = build(:availability_document,
+                                              invalid_days_attribute)
+        invalid_availability_document.should_not be_valid
+      end
+
+      xit 'should not have a valid format with nil items' do
+        invalid_days_attribute = valid_attributes.merge(days: ['', nil])
+        invalid_availability_document = build(:availability_document,
+                                              invalid_days_attribute)
+        invalid_availability_document.should_not be_valid
+      end
+
+      xit 'type of items should be only integer type' do
+        invalid_days_attribute = valid_attributes
+                                        .merge(days: [:hello, true, 'hello'])
+        invalid_availability_document = build(:availability_document,
+                                              invalid_days_attribute)
+        invalid_availability_document.should_not be_valid
+      end
+
+      xit 'length of items should be greater than one' do
+        invalid_days_attribute = valid_attributes.merge(days: [1])
+        invalid_availability_document = build(:availability_document,
+                                              invalid_days_attribute)
+        invalid_availability_document.should_not be_valid
+      end
+
+      xit 'length of items should be less than 7' do
+      end
+    end
   end
-
-  describe '#days attribute' do
-    xit 'should not valid with empty items' do
-      invalid_days_attribute = valid_attributes.merge(days: [])
-      invalid_availability_document = build(:availability_document,
-                                            invalid_days_attribute)
-      invalid_availability_document.should_not be_valid
-    end
-
-    xit 'should not have a valid format with nil items' do
-      invalid_days_attribute = valid_attributes.merge(days: ['', nil])
-      invalid_availability_document = build(:availability_document,
-                                            invalid_days_attribute)
-      invalid_availability_document.should_not be_valid
-    end
-
-    xit 'type of items should be only integer type' do
-      invalid_days_attribute = valid_attributes
-                                      .merge(days: [:hello, true, 'hello'])
-      invalid_availability_document = build(:availability_document,
-                                            invalid_days_attribute)
-      invalid_availability_document.should_not be_valid
-    end
-
-    xit 'length of items should be greater than one' do
-      invalid_days_attribute = valid_attributes.merge(days: [1])
-      invalid_availability_document = build(:availability_document,
-                                            invalid_days_attribute)
-      invalid_availability_document.should_not be_valid
-    end
-
-    xit 'length of items should be less than 7' do
-    end
-  end
-
+  
   describe 'create embedded documents' do
     let(:availability_document) { build(:availability_document) }
 
