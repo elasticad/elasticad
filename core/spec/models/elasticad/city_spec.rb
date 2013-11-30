@@ -39,7 +39,7 @@ describe Elasticad::City do
     end
 
     describe '#zipcode field' do
-      it 'should accepts only valid zip format'
+      it 'should accept only valid zip format'
     end
 
     describe '#state field' do

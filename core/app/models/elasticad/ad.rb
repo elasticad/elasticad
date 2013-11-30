@@ -25,7 +25,7 @@ class Elasticad::Ad
   embeds_one :condition,  class_name: 'Elasticad::Documents::Condition'
   embeds_one :seo,        class_name: 'Elasticad::Documents::Seo'
 
-  belongs_to :taxon
+  belongs_to :taxonomy,   class_name: 'Elasticad::Taxonomy'
 
   has_many :comments,     class_name: 'Elasticad::AdComment'
 

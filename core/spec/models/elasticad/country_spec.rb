@@ -103,7 +103,7 @@ describe Elasticad::Country do
     valid_country.should be_valid
   end
 
-  it '#name attribute should only accepts letter'
+  it '#name attribute should only accept letter'
 
   describe 'create embedded documents' do
     it 'should create iso_standard document' do

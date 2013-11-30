@@ -29,6 +29,10 @@ describe Elasticad::AdComment do
     specify { should embed_one(:author) }  
   end
 
+  describe 'nested attributes' do
+    specify { should accept_nested_attributes_for(:author) }
+  end
+
   describe 'validations' do
     describe '#title field' do
       specify { should validate_presence_of(:title) }

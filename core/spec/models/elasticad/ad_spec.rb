@@ -5,7 +5,7 @@ describe Elasticad::Ad do
   let(:ad) { create(:ad) }
 
   describe 'fields' do
-    # specify { should have_field(:taxon_id).
+    # specify { should have_field(:taxonomy_id).
     #                     of_type(BSON::ObjectId).
     #                     with_default_value_of(0) }
 
@@ -58,7 +58,7 @@ describe Elasticad::Ad do
     specify { should embed_one(:author) }
     specify { should embed_one(:condition) }
     specify { should embed_one(:seo) }
-    specify { should belong_to(:taxon) }
+    specify { should belong_to(:taxonomy) }
     specify { should have_many(:comments) }
   end
 

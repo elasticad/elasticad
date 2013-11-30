@@ -28,7 +28,7 @@ describe Elasticad::Preference do
     describe '#value field' do
       specify { should validate_presence_of(:value) }
       specify { should validate_length_of(:value).within(1..255) }
-      it 'should accepts only words'
+      it 'should accept only words'
     end
 
     describe '#key field' do
@@ -38,7 +38,7 @@ describe Elasticad::Preference do
     describe '#value_type field' do
       specify { should validate_presence_of(:value_type) }
       specify { should validate_length_of(:value_type).within(1..255) }
-      it 'should accepts only words'      
+      it 'should accept only words'      
     end
   end
 

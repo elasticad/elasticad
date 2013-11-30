@@ -25,11 +25,15 @@ describe Elasticad::CityArea do
     specify { should embed_one(:coordinate) }
   end
 
+  describe 'nested attributes' do
+    specify { should accept_nested_attributes_for(:coordinate) }
+  end
+
   describe 'validations' do
     describe '#name field' do
       specify { should validate_presence_of(:name) }
       specify { should validate_length_of(:name).within(3..40) }
-      it 'should accepts only words'
+      it 'should accept only words'
     end
 
     describe '#state field' do

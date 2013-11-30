@@ -13,7 +13,9 @@ class Elasticad::AdComment
   embeds_one :author, class_name: 'Elasticad::Documents::Author'
   belongs_to :ad,     class_name: 'Elasticad::Ad'
 
-
+  # nested attributes
+  accepts_nested_attributes_for :author
+  
   # validations
   validates :title, presence: true,
                     length: { within: 5..40 }

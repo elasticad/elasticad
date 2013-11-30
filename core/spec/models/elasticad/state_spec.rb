@@ -34,7 +34,7 @@ describe Elasticad::State do
     describe '#name field' do
       specify { should validate_presence_of(:name) }
       specify { should validate_length_of(:name).within(3..40) }
-      it 'should accepts only words'
+      it 'should accept only words'
     end
 
     describe '#abbr field' do

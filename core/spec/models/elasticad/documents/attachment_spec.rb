@@ -25,7 +25,7 @@ describe Elasticad::Documents::Attachment do
     specify do
       should have_field(:content_type)
                 .of_type(String)
-                .with_default_value_of(nil)
+                .with_default_value_of('image/png')
     end
 
     specify do
@@ -34,7 +34,7 @@ describe Elasticad::Documents::Attachment do
                 .with_default_value_of(nil)
     end
 
-    # specify { should be_timestamped_document }
+    specify { should_not be_timestamped_document }
   end
 
   describe 'relations' do
@@ -76,7 +76,7 @@ describe Elasticad::Documents::Attachment do
     end
 
     describe '#content_type field' do
-      specify { should validate_presence_of(:content_type) }
+      xspecify { should validate_presence_of(:content_type) }
 
       specify { should validate_inclusion_of(:content_type).to_allow(MIME::Types[/^image/]) }
     end

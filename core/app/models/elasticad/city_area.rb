@@ -12,6 +12,9 @@ class Elasticad::CityArea
   belongs_to :city,       class_name: 'Elasticad::City'
   embeds_one :coordinate, class_name: 'Elasticad::Documents::Geo'
 
+  # nested attributes
+  accepts_nested_attributes_for :coordinate
+  
   # validation
   validates :name, presence: true,
                    length: { within: 3..40 }
