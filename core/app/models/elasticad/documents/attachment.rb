@@ -28,9 +28,12 @@ class Elasticad::Documents::Attachment
   validates :file_size, presence: true,
                         numericality: { only_integer: true,
                                         greater_than_or_equal_to: 0 }
+  
+  CONTENT_TYPES = %w(image/png image/gif image/bmp image/jpeg)
 
   validates :content_type, # presence: true,
-                           inclusion: { in: MIME::Types[/^image/] } 
+                           #inclusion: { in: MIME::Types[/^image/] } 
+                           inclusion: { in: CONTENT_TYPES}
 
   validates :file_name, presence: true
 end

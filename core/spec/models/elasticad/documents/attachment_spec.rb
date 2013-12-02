@@ -78,7 +78,8 @@ describe Elasticad::Documents::Attachment do
     describe '#content_type field' do
       xspecify { should validate_presence_of(:content_type) }
 
-      specify { should validate_inclusion_of(:content_type).to_allow(MIME::Types[/^image/]) }
+      # specify { should validate_inclusion_of(:content_type).to_allow(MIME::Types[/^image/]) }
+      specify { should validate_inclusion_of(:content_type).to_allow(Elasticad::Documents::Attachment::CONTENT_TYPES) }
     end
 
     describe '#file_name field' do

@@ -3,10 +3,10 @@
 # the one component of Elasticad.
 source 'https://rubygems.org'
 
-
+gem 'paperclip', '~> 3.5.2'
 gem 'slim-rails'
 # gem 'mongoid', '~> 3.1.0'
-gem 'mime-types'
+# gem 'mime-types'
 
 if ENV['LOCAL_GIT_REPO']
   gem 'mongoid', path: '/development/ruby/workspaces/mongoid/mongoid'

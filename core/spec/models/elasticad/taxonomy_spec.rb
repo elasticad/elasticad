@@ -154,4 +154,43 @@ describe Elasticad::Taxonomy do
     end
   end
 
+
+  # context "set_permalink" do
+  #   let(:taxon) { Elasticad::Taxonomy.new(:name => "Ruby on Rails") }
+
+  #   it "should set permalink correctly when no parent present" do
+  #     taxon.set_permalink
+  #     taxon.seo.permalink.should == "ruby-on-rails"
+  #   end
+
+  #   it "should support Chinese characters" do
+  #     taxon.name = "你好"
+  #     taxon.set_permalink
+  #     taxon.seo.permalink.should == 'ni-hao'
+  #   end
+
+  #   context "with parent taxon" do
+  #     before do
+  #       taxon.stub :parent_id => 123
+  #       taxon.stub :parent => mock_model(Elasticad::Taxonomy, :permalink => "brands")
+  #     end
+
+  #     it "should set permalink correctly when taxon has parent" do
+  #       taxon.set_permalink
+  #       taxon.seo.permalink.should == "brands/ruby-on-rails"
+  #     end
+
+  #     it "should set permalink correctly with existing permalink present" do
+  #       taxon.seo.permalink = "b/rubyonrails"
+  #       taxon.set_permalink
+  #       taxon.seo.permalink.should == "brands/rubyonrails"
+  #     end
+
+  #     it "should support Chinese characters" do
+  #       taxon.name = "我"
+  #       taxon.set_permalink
+  #       taxon.seo.permalink.should == "brands/wo"
+  #     end
+  #   end
+  # end
 end

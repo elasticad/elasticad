@@ -36,9 +36,32 @@ class Elasticad::Taxonomy
 
   validates :state, inclusion: { in: [*STATES, *STATES.map(&:to_sym)] }
 
+  # before_create :set_premalink
+  # after_initialize { |document| document.build_seo }
+
   alias_method :old_state, :state
 
   def state
     old_state.to_s.inquiry
   end
+
+  alias_method :old_icon, :icon
+
+  def icon
+    old_icon.nil? ? default_icon : old_icon
+  end
+
+  # Creates permalink based on Stringex's .to_url method
+  # def set_permalink
+  #   if parent.present?
+  #     self.seo.permalink = [parent.seo.permalink, (seo.permalink.blank? ? name.to_url : seo.permalink.split('/').last)].join('/')
+  #   else
+  #     self.seo.permalink = name.to_url if seo.permalink.blank?
+  #   end
+  # end
+
+  private
+    def default_icon
+
+    end
 end

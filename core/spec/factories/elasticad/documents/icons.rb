@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :icon, class: Elasticad::Documents::Icon do
-    file_name 'icon.png'  
-    file_size 10000
+    icon_file_name 'icon.png'  
+    icon_file_size 10000
   end
 end

@@ -18,7 +18,8 @@ Spork.prefork do
   require 'rspec/autorun'
   require 'capybara/rspec'
   require 'coveralls'
-
+  # require 'paperclip/matchers'
+  
   Coveralls.wear!
   
   # Requires supporting ruby files with custom matchers and macros, etc,
@@ -58,6 +59,7 @@ Spork.prefork do
     # the seed, which is printed after each run.
     #     --seed 1234
     config.order = 'random'
+    # config.include Paperclip::Shoulda::Matchers, type: :model
     config.include Mongoid::Matchers, type: :model
     config.include FactoryGirl::Syntax::Methods, type: :model
 
