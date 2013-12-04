@@ -3,7 +3,7 @@
 # the one component of Elasticad.
 source 'https://rubygems.org'
 
-gem 'paperclip', '~> 3.5.2'
+gem 'paperclip', '~> 3.4.1' # '~> 3.5.2'
 gem 'slim-rails'
 # gem 'mongoid', '~> 3.1.0'
 # gem 'mime-types'
@@ -44,11 +44,11 @@ group :test do
   gem 'guard-rspec', require: false
   gem 'guard-cucumber', require: false
   gem 'guard-spork', path: '/development/ruby/workspaces/elasticad/guard-spork' if ENV['LOCAL_GIT_REPO']
-  gem 'spork-rails', '~> 4.0'
+  # gem 'spork-rails', '~> 4.0'
   gem 'capybara'
   # gem 'fabrication'
   gem 'factory_girl_rails'
-  gem 'cucumber-rails', require: false
+  # gem 'cucumber-rails', require: false
   gem 'database_cleaner'
   gem 'rb-inotify', '~> 0.9'
 end
